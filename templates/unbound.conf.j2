@@ -17,6 +17,8 @@ server:
 {% endif %}
 {% if unbound_chroot is defined %}
     chroot: {{ unbound_chroot }}
+{% else %}
+    chroot: ""
 {% endif %}
 {% if unbound_log_queries is defined %}
     log-queries: {{ unbound_log_queries }}
