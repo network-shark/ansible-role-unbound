@@ -1,0 +1,11 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install python for Ansible
+      raw: >
+             test -e /usr/local/bin/python2.7 ||
+             (pkg update -f  && pkg install -y python27 )
+      become: true
+      changed_when: false

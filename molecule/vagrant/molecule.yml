@@ -1,0 +1,52 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+
+lint:
+  name: yamllint
+platforms:
+  #  - name: punktfbox12
+  #    box: punktde/freebsd-112-ufs
+  - name: gfreebsdbox12
+    box: generic/freebsd12
+    provider_override_args:
+      - "vm.synced_folder '.', '/vagrant',id: 'vagrant-root',disabled: true"
+    provision: true
+    provider_options:
+      gui: false
+    memory: 512
+    cpus: 1
+
+  - name: gfreebsdbox11
+    box: generic/freebsd11
+    provider_override_args:
+      - "vm.synced_folder '.', '/vagrant',id: 'vagrant-root',disabled: true"
+    provision: true
+    provider_options:
+      gui: false
+    memory: 512
+    cpus: 1
+
+provisioner:
+  name: ansible
+  verbose: vvv
+  log: true
+  lint:
+    name: ansible-lint
+  inventory:
+    #    host_vars:
+    #      punktfbox12:
+    #        ansible_python_interpreter: "/usr/local/bin/python2.7"
+    group_vars:
+      all:
+        ansible_python_interpreter: "/usr/local/bin/python2.7"
+scenario:
+  name: vagrant
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
