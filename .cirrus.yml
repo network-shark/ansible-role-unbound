@@ -19,6 +19,7 @@ task:
     - pkg upgrade -y
     - pkg install python27 curl
     - alias python='/usr/local/bin/python2.7'
+    - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     - python get-pip.py
     # Install Ansible
     - pip install ansible
