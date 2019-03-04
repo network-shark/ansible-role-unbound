@@ -18,11 +18,13 @@ task:
   install_script:
     - pkg upgrade -y
 
+    - pkg install python27
     # Install Ansible
     - pip install ansible
     # Install Molecule
     - pip install molecule
-
+    # Check Python version
+    - python27 --version
     # Check Ansible version
     - ansible --version
 
