@@ -17,18 +17,18 @@ task:
       #      image: freebsd-11-2-release-amd64
   install_script:
     - pkg upgrade -y
-    - pkg install python27 curl
-    - alias python='/usr/local/bin/python2.7'
+    - pkg install python36 curl
+    - alias python='/usr/local/bin/python3.6'
     - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     - python get-pip.py
     # Install Ansible
-    - pip install ansible
+    - pip3 install ansible
     # Install Molecule
-    - pip install molecule
+    - pip3 install molecule
     # Install python-vagrant
-    - pip install python-vagrant
+    - pip3 install python-vagrant
     # Check Python version
-    - python --version
+    - python3 --version
     # Check Ansible version
     - ansible --version
 
