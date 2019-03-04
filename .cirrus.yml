@@ -25,6 +25,8 @@ task:
     - pip install ansible
     # Install Molecule
     - pip install molecule
+    # Install python-vagrant
+    - pip install python-vagrant
     # Check Python version
     - python --version
     # Check Ansible version
