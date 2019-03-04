@@ -20,6 +20,7 @@ task:
     - pkg install python36 curl
     - alias python='/usr/local/bin/python3.6'
     - python -m ensurepip --default-pip
+    - pip install --upgrade pip
     # Install Ansible
     - pip3 install ansible
     # Install Molecule
