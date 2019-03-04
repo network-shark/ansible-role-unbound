@@ -19,8 +19,6 @@ task:
     - pkg upgrade -y
     - pkg install python36 curl
     - alias python='/usr/local/bin/python3.6'
-    - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    - python get-pip.py
     # Install Ansible
     - pip3 install ansible
     # Install Molecule
