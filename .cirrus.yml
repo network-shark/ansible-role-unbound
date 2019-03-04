@@ -17,8 +17,9 @@ task:
       #      image: freebsd-11-2-release-amd64
   install_script:
     - pkg upgrade -y
-    - pkg install python27
+    - pkg install python27 curl
     - alias python='/usr/local/bin/python2.7'
+    - python get-pip.py
     # Install Ansible
     - pip install ansible
     # Install Molecule
