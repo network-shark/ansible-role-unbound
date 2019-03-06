@@ -17,7 +17,7 @@ task:
       #      image: freebsd-11-2-release-amd64
   install_script:
     - pkg upgrade -y
-    - pkg install python36 curl
+    - pkg install python36 curl virtualbox-ose
     - alias python='/usr/local/bin/python3.6'
     - python -m ensurepip --default-pip
     - pip install --upgrade pip
