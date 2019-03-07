@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: delegated
+  options:
+    managed: False
+    ansible_connection_options:
+      ansible_connection: local
+
+lint:
+  name: yamllint
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: cirrusci
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
