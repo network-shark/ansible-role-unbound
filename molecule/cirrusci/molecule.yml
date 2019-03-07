@@ -7,11 +7,19 @@ driver:
     managed: False
     ansible_connection_options:
       ansible_connection: local
+platforms:
+  name: instance-1
 
 lint:
   name: yamllint
 provisioner:
   name: ansible
+  verbose: vvv
+  log: true
+  inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: "/usr/local/bin/python3.6"
   lint:
     name: ansible-lint
 scenario:

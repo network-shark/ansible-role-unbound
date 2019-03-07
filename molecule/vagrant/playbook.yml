@@ -1,6 +1,6 @@
 ---
 - name: Converge
   become: true
-  hosts: all
+  hosts: local
   roles:
     - role: ansible-role-unbound
