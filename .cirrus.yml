@@ -33,7 +33,7 @@ task:
     - molecule --version
     - ls /tmp/cirrus-ci-build/
     - ls /tmp/cirrus-ci-build/molecule/
-   - echo $CIRRUS_WORKING_DIR
+    - echo $CIRRUS_WORKING_DIR
 
   script: |
     cd $CIRRUS_WORKING_DIR
