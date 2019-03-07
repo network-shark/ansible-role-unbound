@@ -32,7 +32,7 @@ task:
         jailName: j12amd64
         execPrefix: cbsd jexec jname=j12amd64
 
-  env:
+#  env:
     #    GH_API_TOKEN: ENCRYPTED[5e482f417304528148bb96eca8d030eacd6ab9972d482485fc4d42907283b995f658b351e0676e9493a37d815398f541]
 
   prepare_script:
