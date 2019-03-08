@@ -39,13 +39,17 @@ task:
     - sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
     - |
       if test "$abi" = "freebsd:12:x86:64"; then
-        ./scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
+        $CIRRUS_WORKING_DIR/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
         $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
         $execPrefix pkg update -f;
-        $execPrefix pkg install -y python2 > /dev/null;
+        $execPrefix pkg install -y git python36 curl > /dev/null;
       fi
+    - $execPrefix python -m ensurepip --default-pip
     - $execPrefix pkg install -y git > /dev/null
     - $execPrefix pkg install -y python36 git > /dev/null
+    - $execPrefix alias python='/usr/local/bin/python3.6' > /dev/null
+    - $execPrefix python -m ensurepip --default-pip > /dev/null
+    - $execPrefix pip install ansible molecule > /dev/null
 
   build_script:
     - |
