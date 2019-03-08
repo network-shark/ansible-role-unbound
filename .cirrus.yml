@@ -50,9 +50,9 @@ task:
         $execPrefix pkg update -f;
         $execPrefix pkg install -y git python36 > /dev/null;
       fi
-     - $execPrefix pkg update -f;
-     - $execPrefix pkg install -y python36 > /dev/null;
-     - $execPrefix alias python='/usr/local/bin/python3.6'
+    - $execPrefix pkg update -f;
+    - $execPrefix pkg install -y python36 > /dev/null;
+    - $execPrefix alias python='/usr/local/bin/python3.6';
 
   build_script:
     - |
