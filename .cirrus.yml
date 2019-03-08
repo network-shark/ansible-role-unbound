@@ -36,6 +36,9 @@ task:
     #    GH_API_TOKEN: ENCRYPTED[5e482f417304528148bb96eca8d030eacd6ab9972d482485fc4d42907283b995f658b351e0676e9493a37d815398f541]
 
   prepare_script:
+    - ls $CIRRUS_WORKING_DIR
+    - ls $CIRRUS_WORKING_DIR/cirrusci/
+    - ls $CIRRUS_WORKING_DIR/cirrusci/scripts/
     - sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
     - |
       if test "$abi" = "freebsd:12:x86:64"; then
