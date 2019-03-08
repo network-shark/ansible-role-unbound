@@ -83,7 +83,7 @@ cat > ${cbsd_workdir}/etc/FreeBSD-bases.conf << EOF
 auto_baseupdate=0
 default_obtain_base_method="extract repo"
 default_obtain_base_extract_source="/usr/freebsd-dist/base.txz"
-default_obtain_base_repo_sources="https://bintray.com/am11/freebsd-dist/download_file?file_path=base-${jail_ver}-${jail_arch}.txz"
+default_obtain_base_repo_sources="http://ftp.freebsd.org/pub/FreeBSD/releases/${jail_arch}/${jail_ver}-RELEASE/base.txz"
 EOF
 
 echo "Creating ${jailName}"
