@@ -14,7 +14,6 @@ task:
   freebsd_instance:
     matrix:
       image: freebsd-12-0-release-amd64
-      image: freebsd-11-2-release-amd64
 
   env:
     matrix:
@@ -54,49 +53,80 @@ task:
     - $execPrefix pkg install -y python36 > /dev/null;
     - $execPrefix alias python='/usr/local/bin/python3.6';
 
-  build_script:
-    - |
-      if test "$abi" = "freebsd:11:x86:32"; then
-        changeDir="cd /etc/skel &&"
-      fi
-      echo "$changeDir npm install --unsafe-perm" | $execPrefix /bin/sh
+  install_script:
 
-  publish_script:
-    - |
-      if test "$CIRRUS_TAG" != ""; then
-        for file in `ls vendor/**/*.node`; do
-          parent=${file%/*};
-          name=${parent##*/};
-          fullyQualifiedName="$(pwd)/$parent/${name}_binding.node";
-          mv "$file" "$parent/${name}_binding.node";
-          echo -e "New filename\072 $fullyQualifiedName";
-          ./scripts/upload-github-release-asset.sh github_api_token=$GH_API_TOKEN owner=am11 repo=node-sass tag=$CIRRUS_TAG filename=$fullyQualifiedName;
-        done
-      fi
+    - pkg upgrade -y
+    - pkg install -y python36
+    - alias python='/usr/local/bin/python3.6'
+    - python -m ensurepip --default-pip
+    - pip install --upgrade pip
+    # Install Ansible
+    - pip3 install ansible
+    # Install Molecule
+    - pip3 install molecule
+    # Check Python version
+    - python3 --version
+    # Check Ansible version
+    - ansible --version
+    # Check Molecule version
+    - molecule --version
 
+    - echo $CIRRUS_WORKING_DIR
+    #  build_script:
+    #    - |
+    #      if test "$abi" = "freebsd:11:x86:32"; then
+    #        changeDir="cd /etc/skel &&"
+    #      fi
+    #      echo "$changeDir npm install --unsafe-perm" | $execPrefix /bin/sh
+    #
+    #  publish_script:
+    #    - |
+    #      if test "$CIRRUS_TAG" != ""; then
+    #        for file in `ls vendor/**/*.node`; do
+    #          parent=${file%/*};
+    #          name=${parent##*/};
+    #          fullyQualifiedName="$(pwd)/$parent/${name}_binding.node";
+    #          mv "$file" "$parent/${name}_binding.node";
+    #          echo -e "New filename\072 $fullyQualifiedName";
+    #          ./scripts/upload-github-release-asset.sh github_api_token=$GH_API_TOKEN owner=am11 repo=node-sass tag=$CIRRUS_TAG filename=$fullyQualifiedName;
+    #        done
+    #      fi
+    #
 
+  script: |
+    cd $CIRRUS_WORKING_DIR
+    molecule --debug test -s cirrusci
 
+task:
+  freebsd_instance11:
+    matrix:
+      image: freebsd-11-2-release-amd64
 
+  env:
+    matrix:
+      - node_js: "11"
+        nodePattern: "^node-11.*V8"
+        npmPattern: "^npm-6\\."
 
+  install_script:
 
-#  install_script:
-#    - pkg upgrade -y
-#    - pkg install -y python36
-#    - alias python='/usr/local/bin/python3.6'
-#    - python -m ensurepip --default-pip
-#    - pip install --upgrade pip
-#    # Install Ansible
-#    - pip3 install ansible
-#    # Install Molecule
-#    - pip3 install molecule
-#    # Check Python version
-#    - python3 --version
-#    # Check Ansible version
-#    - ansible --version
-#    # Check Molecule version
-#    - molecule --version
-#
-#    - echo $CIRRUS_WORKING_DIR
+    - pkg upgrade -y
+    - pkg install -y python36
+    - alias python='/usr/local/bin/python3.6'
+    - python -m ensurepip --default-pip
+    - pip install --upgrade pip
+    # Install Ansible
+    - pip install ansible==2.3.3.0
+    # Install Molecule
+    - pip3 install molecule
+    # Check Python version
+    - python3 --version
+    # Check Ansible version
+    - ansible --version
+    # Check Molecule version
+    - molecule --version
+
+    - echo $CIRRUS_WORKING_DIR
 
   script: |
     cd $CIRRUS_WORKING_DIR
