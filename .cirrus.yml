@@ -14,6 +14,7 @@ task:
   freebsd_instance:
     matrix:
       image: freebsd-12-0-release-amd64
+      image: freebsd-11-2-release-amd64
 
   env:
     matrix:
@@ -23,6 +24,9 @@ task:
       - node_js: "10"
         nodePattern: "^node10-.*V8"
         npmPattern: "^npm-node10-"
+      - node_js: "9"
+        nodePattern: "^node9-.*V8"
+        npmPattern: "^npm-node9-"
 
   env:
     matrix:
@@ -44,14 +48,11 @@ task:
         $CIRRUS_WORKING_DIR/molecule/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
         $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
         $execPrefix pkg update -f;
-        $execPrefix pkg install -y git python36 curl > /dev/null;
+        $execPrefix pkg install -y git python36 > /dev/null;
       fi
-    - $execPrefix python -m ensurepip --default-pip
-    - $execPrefix pkg install -y git > /dev/null
-    - $execPrefix pkg install -y python36 git > /dev/null
-    - $execPrefix alias python='/usr/local/bin/python3.6' > /dev/null
-    - $execPrefix python -m ensurepip --default-pip > /dev/null
-    - $execPrefix pip install ansible molecule > /dev/null
+     - $execPrefix pkg update -f;
+     - $execPrefix pkg install -y python36 > /dev/null;
+     - $execPrefix alias python='/usr/local/bin/python3.6'
 
   build_script:
     - |
