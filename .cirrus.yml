@@ -98,7 +98,7 @@ task:
     molecule --debug test -s cirrusci
 
 task:
-  freebsd_instance11:
+  freebsd_instance:
     matrix:
       image: freebsd-11-2-release-amd64
 
