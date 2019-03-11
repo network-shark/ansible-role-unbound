@@ -9,37 +9,25 @@ task:
   env:
     matrix:
       - ansible_version: "2.4"
+        python_version: "3.6"
       - ansible_version: "2.5"
+        python_version: "3.6"
       - ansible_version: "2.6"
+        python_version: "3.6"
       - ansible_version: "2.7"
+        python_version: "3.6"
 
 
-  prepare_script:
-    - echo $ansible_version
-    - ls $CIRRUS_WORKING_DIR
-    - ls $CIRRUS_WORKING_DIR/molecule/cirrusci/
-    - ls $CIRRUS_WORKING_DIR/molecule/cirrusci/scripts/
-    - sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
-    - |
-      if test "$abi" = "freebsd:12:x86:64"; then
-        $CIRRUS_WORKING_DIR/molecule/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
-        $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
-        $execPrefix pkg update -f;
-        $execPrefix pkg install -y git python36 > /dev/null;
-      fi
-    - $execPrefix pkg update -f;
-    - $execPrefix pkg install -y python36 > /dev/null;
-    - $execPrefix alias python='/usr/local/bin/python3.6';
 
   install_script:
 
     - pkg upgrade -y
-    - pkg install -y python36
-    - alias python='/usr/local/bin/python3.6'
+    - pkg install -y $python_version
+    - alias python='/usr/local/bin/$python_version'
     - python -m ensurepip --default-pip
     - pip install --upgrade pip
     # Install Ansible
-    - pip3 install ansible
+    - pip3 install $ansible_version
     # Install Molecule
     - pip3 install molecule
     # Check Python version
