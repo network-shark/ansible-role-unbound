@@ -1,43 +1,21 @@
 ---
-#env:
-#  CIRRUS_CLONE_DEPTH: 1
-#  ARCH: amd64
-#  OS: FreeBSD
-#  - ANSIBLE_VERSION=2.2
-#  - ANSIBLE_VERSION=2.3
-#  - ANSIBLE_VERSION=2.4
-#  - ANSIBLE_VERSION=2.5
-#  - ANSIBLE_VERSION=2.6
-#  - ANSIBLE_VERSION=2.7
 
 task:
   freebsd_instance:
     matrix:
       image: freebsd-12-0-release-amd64
+      image: freebsd-11-2-release-amd64
 
   env:
     matrix:
-      - node_js: "11"
-        nodePattern: "^node-11.*V8"
-        npmPattern: "^npm-6\\."
-      - node_js: "10"
-        nodePattern: "^node10-.*V8"
-        npmPattern: "^npm-node10-"
-      - node_js: "9"
-        nodePattern: "^node9-.*V8"
-        npmPattern: "^npm-node9-"
+      - ansible_version: "2.4"
+      - ansible_version: "2.5"
+      - ansible_version: "2.6"
+      - ansible_version: "2.7"
 
-  env:
-    matrix:
-      - abi: freebsd:12:x86:64
-     #      - abi: freebsd:11:x86:32
-        jailName: j12amd64
-        execPrefix: cbsd jexec jname=j12amd64
-
-#  env:
-    #    GH_API_TOKEN: ENCRYPTED[5e482f417304528148bb96eca8d030eacd6ab9972d482485fc4d42907283b995f658b351e0676e9493a37d815398f541]
 
   prepare_script:
+    - echo $ansible_version
     - ls $CIRRUS_WORKING_DIR
     - ls $CIRRUS_WORKING_DIR/molecule/cirrusci/
     - ls $CIRRUS_WORKING_DIR/molecule/cirrusci/scripts/
