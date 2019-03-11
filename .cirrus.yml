@@ -3,9 +3,8 @@
 task:
   freebsd_instance:
     matrix:
-      image:
-       - freebsd-12-0-release-amd64
-       - freebsd-11-2-release-amd64
+      image: freebsd-12-0-release-amd64
+      #      image: freebsd-11-2-release-amd64
 
   env:
     matrix:
@@ -43,39 +42,3 @@ task:
   script: |
     cd $CIRRUS_WORKING_DIR
     molecule --debug test -s cirrusci
-
-#task:
-#  freebsd_instance:
-#    matrix:
-#      image: freebsd-11-2-release-amd64
-#
-#  env:
-#    matrix:
-#      - node_js: "11"
-#        nodePattern: "^node-11.*V8"
-#        npmPattern: "^npm-6\\."
-#
-#  install_script:
-#
-#    - pkg upgrade -y
-#    - pkg install -y python36
-#    - alias python='/usr/local/bin/python3.6'
-#    - alias python3='/usr/local/bin/python3.6'
-#    - python -m ensurepip --default-pip
-#    - pip install --upgrade pip
-#    # Install Ansible
-#    - pip install ansible==2.4
-#    # Install Molecule
-#    - pip3 install molecule
-#    # Check Python version
-#    - python --version
-#    # Check Ansible version
-#    - ansible --version
-#    # Check Molecule version
-#    - molecule --version
-#
-#    - echo $CIRRUS_WORKING_DIR
-#
-#  script: |
-#    cd $CIRRUS_WORKING_DIR
-#    molecule --debug test -s cirrusci
