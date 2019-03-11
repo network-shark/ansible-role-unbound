@@ -8,14 +8,14 @@ task:
 
   env:
     matrix:
-      - ansible_version: "2.4"
-        python_version: "3.6"
-      - ansible_version: "2.5"
-        python_version: "3.6"
-      - ansible_version: "2.6"
-        python_version: "3.6"
-      - ansible_version: "2.7"
-        python_version: "3.6"
+      - ansible_version: "ansible2.4"
+        python_version: "python3.6"
+      - ansible_version: "ansible2.5"
+        python_version: "python3.6"
+      - ansible_version: "ansible2.6"
+        python_version: "python3.6"
+      - ansible_version: "ansible2.7"
+        python_version: "python3.6"
 
 
 
