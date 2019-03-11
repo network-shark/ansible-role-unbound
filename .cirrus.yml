@@ -3,8 +3,9 @@
 task:
   freebsd_instance:
     matrix:
-      image: freebsd-12-0-release-amd64
-      image: freebsd-11-2-release-amd64
+      image:
+       - freebsd-12-0-release-amd64
+       - freebsd-11-2-release-amd64
 
   env:
     matrix:
