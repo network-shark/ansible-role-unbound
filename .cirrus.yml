@@ -8,16 +8,13 @@ task:
 
   env:
     matrix:
-      - ansible_version: "ansible2.4"
+      - ansible_version: "2.5.15"
         python_version: "python3.6"
         python_pkg: "python36"
-      - ansible_version: "ansible2.5"
+      - ansible_version: "2.6.14"
         python_version: "python3.6"
         python_pkg: "python36"
-      - ansible_version: "ansible2.6"
-        python_version: "python3.6"
-        python_pkg: "python36"
-      - ansible_version: "ansible2.7"
+      - ansible_version: "2.7.8"
         python_version: "python3.6"
         python_pkg: "python36"
 
@@ -31,7 +28,7 @@ task:
     - python -m ensurepip --default-pip
     - pip install --upgrade pip
     # Install Ansible
-    - pip3 install $ansible_version
+    - pip3 install ansible==$ansible_version
     # Install Molecule
     - pip3 install molecule
     # Check Python version
