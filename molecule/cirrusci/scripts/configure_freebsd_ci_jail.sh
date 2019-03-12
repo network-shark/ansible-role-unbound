@@ -83,6 +83,5 @@ cat > ~cbsd/jails-fstab/fstab.${jailName}.local <<EOF
 ${skelDirectory} /etc/skel nullfs rw 0 0
 EOF
 
-cbsd jstart jname=${jailName} inter=0
 
 echo "${jailName} created"

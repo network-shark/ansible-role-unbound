@@ -5,6 +5,7 @@
   gather_facts: false
   no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log|default(false) | bool) }}"
   tasks:
+
     - name: Start Jail instance(s)
       command: cbsd jstart jname=molecule
 
