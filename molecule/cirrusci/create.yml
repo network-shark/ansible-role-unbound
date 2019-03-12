@@ -1,0 +1,7 @@
+---
+- name: Start Jail
+  shell: cbsd jstart jname=molecule
+
+- pause:
+    seconds: 10
+

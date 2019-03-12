@@ -15,6 +15,10 @@ lint:
   truthy: disable
 provisioner:
   name: ansible
+  playbooks:
+    create: create.yml
+    converge: playbook.yml
+    destroy: destroy.yml
   verbose: vvv
   log: true
   inventory:

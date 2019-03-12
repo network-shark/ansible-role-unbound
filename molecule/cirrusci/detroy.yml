@@ -1,0 +1,7 @@
+---
+- name: Stop Jail
+  shell: cbsd jstop jname=molecule
+
+- pause:
+    seconds: 10
+
