@@ -24,7 +24,7 @@ task:
         jailName: "molecule"
         execPrefix: "cbsd jexec jname=molecule"
 
-  prepare_jail:
+  prepare_script:
     - sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
     - $CIRRUS_WORKING_DIR/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
     - $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
