@@ -1,7 +1,21 @@
 ---
-- name: Start Jail
-  shell: cbsd jstart jname=molecule
+- name: Start Instance
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log|default(false) | bool) }}"
+  tasks:
+    - name: Destroy Jail instance(s)
+      command: cbsd jstart jname=molecule
 
-- pause:
-    seconds: 10
+    # Mandatory configuration for Molecule to function.
 
+    - name: Populate instance config
+      set_fact:
+        instance_conf: {}
+
+    - name: Dump instance config
+      copy:
+        content: "{{ instance_conf | to_json | from_json | molecule_to_yaml | molecule_header }}"
+        dest: "{{ molecule_instance_config }}"
+      when: server.changed | bool
