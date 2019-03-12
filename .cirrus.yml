@@ -52,4 +52,5 @@ task:
   script: |
     cd $CIRRUS_WORKING_DIR
     #    molecule --debug test -s cirrusci
-    molecule --debug test -s cirrusci
+    molecule --debug create -s cirrusci
+    molecule --debug destroy -s cirrusci
