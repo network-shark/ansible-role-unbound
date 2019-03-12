@@ -59,4 +59,3 @@ task:
     molecule --debug destroy -s cirrusci
     molecule --debug create -s cirrusci
     molecule --debug converge -s cirrusci
-
