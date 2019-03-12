@@ -26,7 +26,7 @@ task:
 
   prepare_script:
     - sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
-    - $CIRRUS_WORKING_DIR/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
+    - $CIRRUS_WORKING_DIR/molecule/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
     - $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
     - $execPrefix pkg update -f;
     - $execPrefix pkg install -y python3.5 > /dev/null;
