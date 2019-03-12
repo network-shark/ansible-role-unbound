@@ -4,8 +4,11 @@ dependency:
 driver:
   name: delegated
   options:
-    ansible_connection_options:
-      ansible_connection: local
+    managed: False
+    login_cmd_template: 'cbsd jlogin molecule'
+#  options:
+#    ansible_connection_options:
+#      ansible_connection: local
 
 platforms:
   - name: freebsd_instance
