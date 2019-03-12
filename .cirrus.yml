@@ -48,9 +48,7 @@ task:
     - ansible --version
     # Check Molecule version
     - molecule --version
-    - echo $CIRRUS_WORKING_DIR
-    - ls /tmp/molecule/
-    - tree /tmp/molecule/
+    - ls $CIRRUS_WORKING_DIR
     - tree /tmp/cirrus-ci-build/
 
   script: |
