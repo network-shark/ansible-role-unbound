@@ -11,15 +11,29 @@ task:
       - ansible_version: "2.5.15"
         python_version: "python3.6"
         python_pkg: "python36"
+        jailName: "molecule"
+        execPrefix: "cbsd jexec jname=molecule"
       - ansible_version: "2.6.14"
         python_version: "python3.6"
         python_pkg: "python36"
+        jailName: "molecule"
+        execPrefix: "cbsd jexec jname=molecule"
       - ansible_version: "2.7.8"
         python_version: "python3.6"
         python_pkg: "python36"
+        jailName: "molecule"
+        execPrefix: "cbsd jexec jname=molecule"
+
+   install_jail:
+
+    - sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
+    - $CIRRUS_WORKING_DIR/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
+    - $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
+    - $execPrefix pkg update -f;
+    - $execPrefix pkg install -y python3.5 > /dev/null;
 
   install_script:
-
+    # install tooling on the host
     - pkg upgrade -y
     - pkg install -y $python_pkg
     - alias python='/usr/local/bin/$python_version'
