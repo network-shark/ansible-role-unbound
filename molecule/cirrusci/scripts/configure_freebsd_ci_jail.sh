@@ -10,8 +10,6 @@ jail_ver="12.0"
 
 pkg install -y cbsd
 
-pw useradd cbsd -s /bin/sh -d ${cbsd_workdir} -c "cbsd user"
-
 # determine uplink ip address
 # determine uplink iface
 auto_iface=$( /sbin/route -n get 0.0.0.0 |/usr/bin/awk '/interface/{print $2}' )

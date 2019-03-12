@@ -29,7 +29,7 @@ task:
     - $CIRRUS_WORKING_DIR/molecule/cirrusci/scripts/configure_freebsd_ci_jail.sh $jailName $CIRRUS_WORKING_DIR;
     - $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
     - $execPrefix pkg update -f;
-    - $execPrefix pkg install -y python3.5 > /dev/null;
+    - $execPrefix pkg install -y $python_pkg > /dev/null;
 
   install_script:
     # install tooling on the host
@@ -49,7 +49,6 @@ task:
     # Check Molecule version
     - molecule --version
 
-    - echo $CIRRUS_WORKING_DIR
 
   script: |
     cd $CIRRUS_WORKING_DIR
