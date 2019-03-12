@@ -30,6 +30,7 @@ task:
     - $execPrefix sed -i -- '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf;
     - $execPrefix pkg update -f;
     - $execPrefix pkg install -y $python_pkg > /dev/null;
+    - cbsd jstop jname=$jailName
 
   install_script:
     # install tooling on the host
