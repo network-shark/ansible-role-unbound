@@ -51,10 +51,12 @@ task:
     - molecule --version
 
   script: |
+    git clone https://github.com/network-shark/ansible-role-unbound.git
     ls -l
-    tree
+    pwd
     ls $CIRRUS_WORKING_DIR
     cd $CIRRUS_WORKING_DIR
+    pwd
     #    molecule --debug test -s cirrusci
     molecule --debug lint -s cirrusci
     molecule --debug syntax -s cirrusci
