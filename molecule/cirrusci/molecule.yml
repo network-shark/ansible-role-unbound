@@ -3,8 +3,8 @@ dependency:
   name: galaxy
 driver:
   name: delegated
-    options:
-      managed: False
+  options:
+    managed: False
   #      login_cmd_template: 'cbsd jlogin molecule'
   options:
     ansible_connection_options:
