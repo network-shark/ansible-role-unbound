@@ -9,7 +9,7 @@ driver:
       ansible_connection: local
 
 platforms:
-  - name: freebsd_instance
+  - name: molecule
 
 lint:
   name: yamllint
