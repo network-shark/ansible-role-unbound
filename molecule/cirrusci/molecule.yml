@@ -3,9 +3,9 @@ dependency:
   name: galaxy
 driver:
   name: delegated
-  #  options:
-  #    managed: False
-  #    login_cmd_template: 'cbsd jlogin molecule'
+    options:
+      managed: False
+  #      login_cmd_template: 'cbsd jlogin molecule'
   options:
     ansible_connection_options:
       ansible_connection: local
@@ -27,7 +27,7 @@ provisioner:
   inventory:
     host_vars:
       freebsd_instance:
-        ansible_connection: local
+        ansible_connection: jail
     group_vars:
       all:
         ansible_python_interpreter: "/usr/local/bin/python3.6"
