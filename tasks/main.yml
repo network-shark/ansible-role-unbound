@@ -22,12 +22,13 @@
 - include: root_anchor.yml
   when: unbound_auto_trust_anchor_file|default(false)
 
+- name: Debug unbound-checkconf
+  command: whereis unbound-checkconf
 # Cannot move this part as the `verify` component of the previous task, because
 # unbound-checkconf fails if the file is outside {{ unbound_directory }}
 - name: Check unbound.conf
-  command: unbound-checkconf "{{ unbound_conf_path }}"
+  command: /usr/local/sbin/unbound-checkconf "{{ unbound_conf_path }}"
   changed_when: false
-
 - name: Enable unbound service
   service:
     name: "{{ unbound_service_name }}"
