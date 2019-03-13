@@ -9,7 +9,7 @@ driver:
       ansible_connection: local
 
 platforms:
-  - name: molecule
+  - name: moleculel
 
 lint:
   name: yamllint
@@ -28,7 +28,7 @@ provisioner:
         ansible_connection: jail
     group_vars:
       all:
-        ansible_python_interpreter: "/usr/local/bin/python3.6"
+        ansible_python_interpreter: "/usr/local/bin/python2.7"
   lint:
     name: ansible-lint
 scenario:
