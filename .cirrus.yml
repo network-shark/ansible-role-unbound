@@ -36,6 +36,7 @@ task:
     # install tooling on the host
     - pkg upgrade -y
     - pkg install -y $python_pkg
+    - pkg install git
     - alias python='/usr/local/bin/$python_version'
     - python -m ensurepip --default-pip
     - pip install --upgrade pip
