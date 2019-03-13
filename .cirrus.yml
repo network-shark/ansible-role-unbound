@@ -58,6 +58,7 @@ task:
     cd $CIRRUS_WORKING_DIR
     pwd
     #    molecule --debug test -s cirrusci
+    cbsd jstart jname=$jailName
     molecule --debug lint -s cirrusci
     molecule --debug syntax -s cirrusci
     molecule --debug create -s cirrusci
