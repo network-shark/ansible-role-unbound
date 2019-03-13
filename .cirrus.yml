@@ -35,8 +35,7 @@ task:
   install_script:
     # install tooling on the host
     - pkg upgrade -y
-    - pkg install -y $python_pkg
-    - pkg install git
+    - pkg install -y $python_pkg git
     - alias python='/usr/local/bin/$python_version'
     - python -m ensurepip --default-pip
     - pip install --upgrade pip
