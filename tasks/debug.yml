@@ -2,6 +2,7 @@
 - name: Debug unbound-checkconf
   command: whereis unbound-checkconf
   register: test
+  changed_when: false
 
 - name: Show whereis
   debug:
