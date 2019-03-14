@@ -13,16 +13,19 @@ task:
         python_pkg: "python36"
         jailName: "molecule"
         execPrefix: "cbsd jexec jname=molecule"
+        PATH: "/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin"
       - ansible_version: "2.6.14"
         python_version: "python3.6"
         python_pkg: "python36"
         jailName: "molecule"
         execPrefix: "cbsd jexec jname=molecule"
+        PATH: "/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin"
       - ansible_version: "2.7.8"
         python_version: "python3.6"
         python_pkg: "python27"
         jailName: "molecule"
         execPrefix: "cbsd jexec jname=molecule"
+        PATH: "/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin"
 
   prepare_script:
     - sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
