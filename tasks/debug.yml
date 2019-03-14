@@ -11,6 +11,8 @@
 - name: Debug Cirrus CI
   command: "{{ item }}"
   loop:
+    - whoami
+    - ls /usr/local/sbin/
     - env
     - whereis unbound-checkconf
   register: debug_env
@@ -18,5 +20,5 @@
 
 - name: Show Cirrus CI Env
   debug:
-    msg: {{ debug_env }}
+    msg: "{{ debug_env }}"
 # vim: set ts=2 sw=2:
