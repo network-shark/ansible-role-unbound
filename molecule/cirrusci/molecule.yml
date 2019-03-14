@@ -20,7 +20,7 @@ provisioner:
     create: create.yml
     converge: playbook.yml
     destroy: destroy.yml
-  verbose: vvvvv
+  verbose: vv
   log: true
   inventory:
     host_vars:

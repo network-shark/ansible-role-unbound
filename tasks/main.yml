@@ -27,7 +27,7 @@
 # Cannot move this part as the `verify` component of the previous task, because
 # unbound-checkconf fails if the file is outside {{ unbound_directory }}
 - name: Check unbound.conf
-  command: /usr/local/sbin/unbound-checkconf "{{ unbound_conf_path }}"
+  command: unbound-checkconf "{{ unbound_conf_path }}"
   changed_when: false
 - name: Enable unbound service
   service:
