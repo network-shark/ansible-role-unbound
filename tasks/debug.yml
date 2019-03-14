@@ -8,4 +8,15 @@
   debug:
     msg: "{{ test }}"
 
+- name: Debug Cirrus CI
+  command: "{{ item }}"
+  loop:
+    - env
+    - whereis unbound-checkconf
+  register: debug_env
+  changed_when: false
+
+- name: Show Cirrus CI Env
+  debug:
+    msg: {{ debug_env }}
 # vim: set ts=2 sw=2:
