@@ -4,6 +4,8 @@
 
 - include: install.yml
 
+- include: debug.yml
+
 - name: Configure unbound.conf
   template:
     src: unbound.conf.j2
@@ -21,14 +23,6 @@
 
 - include: root_anchor.yml
   when: unbound_auto_trust_anchor_file|default(false)
-
-- name: Debug unbound-checkconf
-  command: whereis unbound-checkconf
-  register: test
-
-- name: Show whereis
-  debug:
-    msg: "{{ test }}"
 
 # Cannot move this part as the `verify` component of the previous task, because
 # unbound-checkconf fails if the file is outside {{ unbound_directory }}
