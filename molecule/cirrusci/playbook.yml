@@ -2,4 +2,4 @@
 - name: Converge
   hosts: all
   roles:
-    - role: '/tmp/cirrus-ci-build/ansible-role-unbound'
+    - role: ansible-role-unbound

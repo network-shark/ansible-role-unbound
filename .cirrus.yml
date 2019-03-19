@@ -56,17 +56,14 @@ task:
     - molecule --version
 
   script: |
+    cd /tmp/
     git clone https://github.com/network-shark/ansible-role-unbound.git
-    ls -l
-    pwd
-    ls $CIRRUS_WORKING_DIR
     cd $CIRRUS_WORKING_DIR
-    pwd
-    #    molecule --debug test -s cirrusci
-    cbsd jstart jname=$jailName
-    molecule --debug lint -s cirrusci
-    molecule --debug syntax -s cirrusci
-    molecule --debug create -s cirrusci
-    molecule --debug destroy -s cirrusci
-    molecule --debug create -s cirrusci
-    molecule --debug converge -s cirrusci
+    molecule --debug test -s cirrusci
+    #    cbsd jstart jname=$jailName
+    #    molecule --debug lint -s cirrusci
+    #    molecule --debug syntax -s cirrusci
+    #    molecule --debug create -s cirrusci
+    #    molecule --debug destroy -s cirrusci
+    #    molecule --debug create -s cirrusci
+    #    molecule --debug converge -s cirrusci
